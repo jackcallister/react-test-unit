@@ -1,11 +1,12 @@
 {
   "name": "react-test-unit",
-  "version": "0.0.1-alpha1",
+  "version": "0.0.1-alpha3",
   "description": "",
   "main": "dist/react-test-unit.js",
   "scripts": {
     "test": "node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
-    "build": "node_modules/.bin/webpack"
+    "build": "node_modules/.bin/webpack",
+    "prepublish": "npm run build"
   },
   "author": "Jack Callister",
   "license": "ISC",

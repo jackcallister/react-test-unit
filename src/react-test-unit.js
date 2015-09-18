@@ -19,7 +19,7 @@ function mapComponent(comp) {
     return renderComponent(comp)
   }
 
-  if (!comp.props || comp.props.children.length === 0) {
+  if (!comp.props || !comp.props.children || comp.props.children.length === 0) {
     return comp
   }
 

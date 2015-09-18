@@ -13,8 +13,7 @@ module.exports = {
   },
 
   externals: {
-    'react': 'React',
-    'react/addons': 'React'
+    'react/addons': 'react/addons'
   },
 
   module: {

@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/react-test-unit',
+  entry: './src/index',
 
   output: {
     path: './dist/',

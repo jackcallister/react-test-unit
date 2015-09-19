@@ -1,8 +1,8 @@
 {
   "name": "react-test-unit",
-  "version": "0.0.1-alpha3",
+  "version": "0.1.0-rc.1",
   "description": "",
-  "main": "dist/react-test-unit.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
     "build": "node_modules/.bin/webpack",

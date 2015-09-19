@@ -1,6 +1,6 @@
 import React from 'react'
 import assert from 'assert'
-import { renderComponent } from '../src/react-test-unit'
+import { renderComponent } from '../src/index'
 
 class SingleChildComponent {
 

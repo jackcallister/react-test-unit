@@ -1,14 +1,14 @@
 import React from 'react'
 import assert from 'assert'
-import { renderComponent, querySelectorAll } from '../src/react-test-unit'
+import { renderComponent, querySelectorAll } from '../src/index'
 
 class Component {
 
   render() {
     return (
       <div>
-        <div>Test</div>
-        <section>
+        <div className='class'>Test</div>
+        <section className='class'>
           <h1>Test</h1>
         </section>
       </div>
@@ -33,6 +33,14 @@ describe('querySelectorAll', () => {
 
   context('multiple matches', () => {
     const selections = querySelectorAll(component, 'div')
+
+    it('should find two divs', () => {
+      assert.equal(2, selections.length)
+    })
+  })
+
+  context('multiple class matches', () => {
+    const selections = querySelectorAll(component, '.class')
 
     it('should find two divs', () => {
       assert.equal(2, selections.length)

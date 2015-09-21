@@ -34,26 +34,6 @@ function renderComponentInRenderer(renderer, comp) {
   return mapComponent(renderer.getRenderOutput())
 }
 
-export function querySelectorAll(comp, selector) {
-  let matches = comp.type != null && comp.type === selector ? [comp] : []
-
-  if (comp.props && React.Children.count(comp.props.children) > 0) {
-    React.Children.forEach(comp.props.children, (child) => {
-      matches = matches.concat(querySelectorAll(child, selector))
-    })
-  }
-
-  return matches
-}
-
-export function querySelector(comp, selector) {
-  return querySelectorAll(comp, selector)[0]
-}
-
-export function dispatchEvent(comp, event, ...args) {
-  comp.props[event](...args)
-}
-
-export function renderComponent(comp) {
+export default function renderComponent(comp) {
   return renderComponentInRenderer(React.addons.TestUtils.createRenderer(), comp)
 }

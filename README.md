@@ -4,6 +4,12 @@ A set of utilities to make testing stateless components simple, readable and fas
 
 ## Usage
 
+Install via NPM.
+
+```
+npm install react-test-unit@0.1.0-rc.2 --save-dev
+```
+
 React Test Unit provides a `renderComponent` function which accepts a React component and returns a shallowly rendered output tree.
 
 Under the hood this uses the [`ReactShallowRenderer`](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) and recursively renders the view tree.

@@ -26,7 +26,7 @@ const component = renderComponent(<Component {...props}/>)
 
 With the component rendered you can make assertions about the output. Notice there is no need to render to the DOM.
 
-To make assertions you'll need to select elements. React Test Unit provides `querySelector` and `querySelectorAll` functions. **Only element types (div, h1 etc) are supported. Classes and ids are also supported.**
+To make assertions you'll need to select elements. React Test Unit provides `querySelector` and `querySelectorAll` functions. Single classes and ids are also supported.
 
 ```
 import { renderComponent, querySelector, querySelectorAll } from 'react-test-unit'

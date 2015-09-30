@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import assert from 'assert'
 import sinon from 'sinon'
-import { renderComponent, querySelector, dispatchEvent } from '../src/index'
+import { renderComponent, querySelector, dispatchEvent } from '../lib/react-test-unit'
 
 class Component {
 

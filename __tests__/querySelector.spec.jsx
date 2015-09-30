@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import assert from 'assert'
-import { renderComponent, querySelector, querySelectorAll } from '../src/index'
+import { renderComponent, querySelector, querySelectorAll } from '../lib/react-test-unit'
 
 class Component {
 

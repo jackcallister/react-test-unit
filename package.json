@@ -1,12 +1,11 @@
 {
   "name": "react-test-unit",
-  "version": "0.1.0-rc.2",
+  "version": "0.2.0-alpha",
   "description": "",
-  "main": "dist/react-test-unit.js",
+  "main": "lib/react-test-unit.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
-    "build": "node_modules/.bin/webpack",
-    "prepublish": "npm run build"
+    "test": "npm run prepublish & node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
+    "prepublish": "node_modules/.bin/webpack"
   },
   "author": "Jack Callister",
   "license": "ISC",
@@ -18,5 +17,8 @@
     "react": "^0.14.0-rc1",
     "sinon": "^1.16.1",
     "webpack": "^1.10.5"
+  },
+  "dependencies": {
+    "react-addons-test-utils": "^0.14.0-rc1"
   }
 }

@@ -1,4 +1,5 @@
-import React from 'react/addons'
+import React from 'react'
+import TestUtils from 'react-addons-test-utils'
 
 function mapChildren(children) {
   let mappedChildren = []
@@ -15,6 +16,7 @@ function mapChildren(children) {
 }
 
 function mapComponent(comp) {
+
   if (typeof comp.type === 'function') {
     return renderComponent(comp)
   }
@@ -23,9 +25,18 @@ function mapComponent(comp) {
     return comp
   }
 
-  comp.props.children = mapChildren(comp.props.children)
+  // Writable is set to true.
+  // Let's change that...hehe
+  const newComp = {
+    ...comp,
+    props: {
+      ...comp.props
+    }
+  }
 
-  return comp
+  newComp.props.children = mapChildren(comp.props.children)
+
+  return newComp
 }
 
 function renderComponentInRenderer(renderer, comp) {
@@ -35,5 +46,5 @@ function renderComponentInRenderer(renderer, comp) {
 }
 
 export default function renderComponent(comp) {
-  return renderComponentInRenderer(React.addons.TestUtils.createRenderer(), comp)
+  return renderComponentInRenderer(TestUtils.createRenderer(), comp)
 }

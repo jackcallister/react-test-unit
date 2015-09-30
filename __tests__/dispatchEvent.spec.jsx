@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import assert from 'assert'
 import sinon from 'sinon'
 import { renderComponent, querySelector, dispatchEvent } from '../src/index'

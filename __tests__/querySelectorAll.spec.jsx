@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import assert from 'assert'
 import { renderComponent, querySelectorAll } from '../src/index'
 

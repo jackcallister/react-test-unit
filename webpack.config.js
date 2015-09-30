@@ -2,7 +2,7 @@ module.exports = {
   entry: './src/index',
 
   output: {
-    path: './dist/',
+    path: './lib/',
     filename: 'react-test-unit.js',
     library: 'react-test-unit',
     libraryTarget: 'umd'
@@ -13,7 +13,7 @@ module.exports = {
   },
 
   externals: {
-    'react/addons': 'react/addons'
+    'react': 'react'
   },
 
   module: {

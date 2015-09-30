@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import assert from 'assert'
 import { renderComponent, querySelector, querySelectorAll } from '../lib/react-test-unit'
 
-class Component {
+class TestComponent extends Component {
 
   render() {
     return (
@@ -17,7 +17,7 @@ class Component {
 }
 
 describe('querySelector', () => {
-  const component = renderComponent(<Component />)
+  const component = renderComponent(<TestComponent />)
 
   context('tags', () => {
     const selection = querySelector(component, 'h1')

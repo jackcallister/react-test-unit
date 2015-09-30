@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import assert from 'assert'
 import { renderComponent } from '../lib/react-test-unit'
 
-class SingleChildComponent {
+class SingleChildComponent extends Component {
 
   render() {
     return <h1>Test</h1>
   }
 }
 
-class MultipleElementChildrenComponent {
+class MultipleElementChildrenComponent extends Component {
 
   render() {
     return (
@@ -23,7 +23,7 @@ class MultipleElementChildrenComponent {
   }
 }
 
-class ComponentComponent {
+class ComponentComponent extends Component {
 
   render() {
     return (
@@ -34,7 +34,7 @@ class ComponentComponent {
   }
 }
 
-class OtherComponent {
+class OtherComponent extends Component {
 
   render() {
     return (

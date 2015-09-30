@@ -3,7 +3,7 @@ import assert from 'assert'
 import sinon from 'sinon'
 import { renderComponent, querySelector, dispatchEvent } from '../lib/react-test-unit'
 
-class Component {
+class TestComponent extends Component {
 
   render() {
     return (
@@ -21,7 +21,7 @@ describe('dispatchEvent', () => {
 
   context('with a handler', () => {
     const onClickHandler = sinon.spy()
-    const component = renderComponent(<Component onClickHandler={onClickHandler} />)
+    const component = renderComponent(<TestComponent onClickHandler={onClickHandler} />)
     const h1 = querySelector(component, 'h1')
 
     dispatchEvent(h1, 'onClick')
@@ -32,7 +32,7 @@ describe('dispatchEvent', () => {
   })
 
   context('without a handler', () => {
-    const component = renderComponent(<Component />)
+    const component = renderComponent(<TestComponent />)
 
     const result = dispatchEvent(component, 'onClick')
 

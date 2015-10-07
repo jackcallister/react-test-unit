@@ -1,5 +1,7 @@
 import querySelectorAll from './querySelectorAll'
 
 export default function querySelector(comp, selector) {
-  return querySelectorAll(comp, selector)[0]
+  const selections = querySelectorAll(comp, selector)
+
+  return selections ? selections[0] : []
 }

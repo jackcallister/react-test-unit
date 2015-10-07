@@ -1,77 +1,57 @@
 import React from 'react'
 
-function getSelectorType(selector) {
-  const klass = /\..*$/
-  const id = /#.*$/
+function queryAll(tree, test) {
+  let matches = test(tree) ? [tree] : []
 
-  if (klass.test(selector)) {
-    return 'class'
-  } else if (id.test(selector)) {
-    return 'id'
-  } else {
-    return 'tag'
-  }
-}
-
-// Yuck - refactor this!
-
-function querySelectorAllByClass(comp, selector) {
-  let matches = []
-
-  if (comp && comp.props && `.${comp.props.className}` === selector) {
-    matches = [...matches, comp]
-  }
-
-  if (comp && comp.props && React.Children.count(comp.props.children) > 0) {
-    React.Children.forEach(comp.props.children, (child) => {
-      matches = matches.concat(querySelectorAllByClass(child, selector))
-    })
+  if (React.isValidElement(tree)) {
+    if (React.Children.count(tree.props.children) > 0) {
+      React.Children.forEach(tree.props.children, (child) => {
+        matches = matches.concat(queryAll(child, test))
+      })
+    }
   }
 
   return matches
 }
 
-function querySelectorAllById(comp, selector) {
-  let matches = []
-
-  if (comp && comp.props && `#${comp.props.id}` === selector) {
-    matches = [...matches, comp]
-  }
-
-  if (comp && comp.props && React.Children.count(comp.props.children) > 0) {
-    React.Children.forEach(comp.props.children, (child) => {
-      matches = matches.concat(querySelectorAllById(child, selector))
-    })
-  }
-
-  return matches
+function hasClassName(classNameList, className) {
+  return ` ${classNameList} `.indexOf(` ${className.split('.')[1]} `) !== -1
 }
 
-function querySelectorAllByTag(comp, selector) {
-  let matches = []
+function querySelectorAllByClass(tree, className) {
+  return queryAll(tree, component => {
+    if (React.isValidElement(component)) {
+      if(component.props.className != null) {
+        if (className.includes('.')) {
+          const classNameList = className.split(/.\./)
+          return classNameList.every((val) => {
+            return hasClassName(component.props.className, val)
+          })
+        }
+        return hasClassName(component.props.className, className)
+      }
+      return false
+    }
+    return false
+  })
+}
 
-  if (comp && comp.props && comp.type === selector) {
-    matches = [...matches, comp]
-  }
-
-  if (comp && comp.props && React.Children.count(comp.props.children) > 0) {
-    React.Children.forEach(comp.props.children, (child) => {
-      matches = matches.concat(querySelectorAll(child, selector))
-    })
-  }
-
-  return matches
+function querySelectorAllByTag(tree, type) {
+  return queryAll(tree, component => {
+    if (React.isValidElement(component)) {
+      if (React.isValidElement(component)) {
+        return component.type != null && component.type === type
+      }
+      return false
+    }
+    return false
+  })
 }
 
 export default function querySelectorAll(comp, selector) {
-  const selectorType = getSelectorType(selector)
-
-  switch(selectorType){
-    case 'class':
-      return querySelectorAllByClass(comp, selector)
-    case 'id':
-      return querySelectorAllById(comp, selector)
-    default:
-      return querySelectorAllByTag(comp, selector)
+  if (/\..*$/.test(selector)) {
+    return querySelectorAllByClass(comp, selector)
+  } else {
+    return querySelectorAllByTag(comp, selector)
   }
 }

@@ -16,6 +16,11 @@ function mapChildren(children, originalContext) {
 }
 
 function recursivelyShallowRenderTree(tree, originalContext) {
+  // tree (or sub-tree) is a null render
+  if (!tree) {
+    return null
+  }
+
   if (typeof tree.type === 'function') {
     const Comp = tree.type
     const props = tree.props

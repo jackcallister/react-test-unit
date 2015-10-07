@@ -77,25 +77,18 @@ class MultipleElementChildrenComponent extends Component {
   }
 }
 
-class ComponentComponent extends Component {
+class NullComponent extends Component {
 
   render() {
     return (
       <div>
-        <OtherComponent />
+        <h1>Test</h1>
+        {null}
       </div>
     )
   }
 }
 
-class OtherComponent extends Component {
-
-  render() {
-    return (
-      <h1>Test</h1>
-    )
-  }
-}
 
 describe('renderComponent', () => {
 
@@ -149,15 +142,15 @@ describe('renderComponent', () => {
     })
   })
 
-  context('with a ComponentComponent', () => {
-    const component = renderComponent(ComponentComponent)
+  context('with a NullComponent', () => {
+    const component = renderComponent(NullComponent)
 
     it('should be a div', () => {
       assert.equal('div', component.type)
     })
 
-    it('should have an h1 child', () => {
-      assert.equal('h1', component.props.children.type)
+    it('should have a null child', () => {
+      assert.equal(null, component.props.children[1])
     })
   })
 })

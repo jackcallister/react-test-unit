@@ -23,7 +23,7 @@ const props = {
   ...
 }
 
-const component = renderComponent(Component, {...props})
+const component = renderComponent(Component, props)
 ```
 
 With the component rendered you can make assertions about the output. Notice there is no need to render to the DOM.
@@ -37,12 +37,10 @@ const props = {
   ...
 }
 
-const component = renderComponent(<Component {...props}/>)
+const component = renderComponent(Component, props)
 const divs = querySelectorAll(component, 'div')
-const h1 = querySelector(component, '#heading')
 
 assert.equal(2, divs.length)
-assert.equal('h1', h1.type)
 ```
 
 Finally you'll can make sure handlers are correctly bound with the `dispatchEvent` function.
@@ -57,7 +55,7 @@ const props = {
   onClickHandler: spy
 }
 
-const component = renderComponent(<Component {...props} />)
+const component = renderComponent(Component, props)
 const button = querySelector(component, 'button')
 
 dispatchEvent(button, 'onClick')
@@ -69,3 +67,58 @@ Checkout the example usage [here](https://github.com/jarsbe/react-testing-kit)(d
 
 Special mention must go to [React Shallow Testutils](https://github.com/sheepsteak/react-shallow-testutils) and [React Unit](https://github.com/pzavolinsky/react-unit) for a lot of inspiration and concepts.
 
+## API
+
+### `renderComponent`
+
+```
+/**
+* Recursively runs a shallow render on a React Component class.
+*
+* @method renderComponent
+* @param {Function}(required) component A React Component
+* @param {Object}(optional) props A props object to instantiate the component with
+* @param {Object}(optional) context A context object to instantiate each component in the tree with
+* @return {Object} Returns a fully formed render tree
+*/
+```
+
+### `querySelectorAll`
+
+```
+/**
+* Searches a render tree for either class or tag.
+*
+* @method querySelectorAll
+* @param {Object}(required) tree A rendered component tree
+* @param {String}(required) selector Either a class ('.class') or tag ('div') to search for
+* @return {Array} Returns an array of the found objects in the component tree
+*/
+```
+
+### `querySelector`
+
+```
+/**
+* Searches a render tree for either class or tag and returns the first result.
+*
+* @method querySelector
+* @param {Object}(required) tree A rendered component tree
+* @param {String}(required) selector Either a class ('.class') or tag ('div') to search for
+* @return {Object|Undefined} Returns either undefined or the found object in the component tree
+*/
+```
+
+### `dispatchEvent`
+
+```
+/**
+* Calls the handler function for a given event
+*
+* @method dispatchEvent
+* @param {Object}(required) tree A rendered component tree to call the handler on
+* @param {String}(required) handler The handler to call
+* @param {Args}(optional) arguments Any number of arguments to pass to the handler
+* @return {?|False} Returns either the result of the handler or false if no handler exsist
+*/
+```

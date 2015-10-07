@@ -9,7 +9,7 @@ A set of utilities to make testing stateless components simple, readable and fas
 Install via NPM. For use with React 0.14.x only.
 
 ```
-npm install react-test-unit@0.3.0-alpha --save-dev
+npm install react-test-unit@0.3.0-rc.1 --save-dev
 ```
 
 React Test Unit provides a `renderComponent` function which accepts a React component and returns a shallowly rendered output tree.

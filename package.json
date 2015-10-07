@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/react-test-unit.js",
   "scripts": {
-    "test": "npm run prepublish & node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
+    "test": "node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
     "prepublish": "node_modules/.bin/webpack"
   },
   "author": "Jack Callister",

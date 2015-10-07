@@ -42,12 +42,4 @@ describe('querySelector', () => {
       })
     })
   })
-
-  context('ids', () => {
-    const selection = querySelector(component, '#id')
-
-    it('should find elements by id', () => {
-      assert.equal('h1', selection.type)
-    })
-  })
 })

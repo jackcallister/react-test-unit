@@ -33,7 +33,6 @@ describe('dispatchEvent', () => {
 
   context('without a handler', () => {
     const component = renderComponent(TestComponent)
-
     const result = dispatchEvent(component, 'onClick')
 
     it('should return false', () => {

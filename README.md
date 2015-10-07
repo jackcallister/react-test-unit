@@ -1,13 +1,15 @@
 # React Test Unit
 
-A set of utilities to make testing stateless components simple, readable and fast. This is in early stage development. I wouldn't recommend using it just yet.
+<strong>Warning</strong> Currently in active development, not quite ready for prime time. There WILL be major break changes.
+
+A set of utilities to make testing stateless components simple, readable and fast.
 
 ## Usage
 
-Install via NPM.
+Install via NPM. For use with React 0.14.x only.
 
 ```
-npm install react-test-unit@0.1.0-rc.2 --save-dev
+npm install react-test-unit@0.3.0-alpha --save-dev
 ```
 
 React Test Unit provides a `renderComponent` function which accepts a React component and returns a shallowly rendered output tree.
@@ -21,7 +23,7 @@ const props = {
   ...
 }
 
-const component = renderComponent(<Component {...props}/>)
+const component = renderComponent(Component, {...props})
 ```
 
 With the component rendered you can make assertions about the output. Notice there is no need to render to the DOM.
@@ -63,6 +65,7 @@ dispatchEvent(button, 'onClick')
 assert.equal(true, spy.called)
 ```
 
-Checkout the example usage [here](https://github.com/jarsbe/react-testing-kit).
+Checkout the example usage [here](https://github.com/jarsbe/react-testing-kit)(deprecated).
 
 Special mention must go to [React Shallow Testutils](https://github.com/sheepsteak/react-shallow-testutils) and [React Unit](https://github.com/pzavolinsky/react-unit) for a lot of inspiration and concepts.
+

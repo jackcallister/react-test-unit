@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import assert from 'assert'
-import { renderComponent, querySelectorAll } from '../lib/react-test-unit'
+import { renderComponent, querySelectorAll } from '../src/index'
 
 class MyComponent extends Component {
 
@@ -17,7 +17,7 @@ class MyComponent extends Component {
 }
 
 describe('querySelectorAll', () => {
-  const component = renderComponent(<MyComponent />)
+  const component = renderComponent(MyComponent)
 
   context('single match', () => {
     const selections = querySelectorAll(component, 'h1')

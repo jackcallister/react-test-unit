@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import assert from 'assert'
-import { renderComponent, querySelector, querySelectorAll } from '../lib/react-test-unit'
+import { renderComponent, querySelector, querySelectorAll } from '../src/index'
 
 class TestComponent extends Component {
 
@@ -17,7 +17,7 @@ class TestComponent extends Component {
 }
 
 describe('querySelector', () => {
-  const component = renderComponent(<TestComponent />)
+  const component = renderComponent(TestComponent)
 
   context('tags', () => {
     const selection = querySelector(component, 'h1')
@@ -32,6 +32,14 @@ describe('querySelector', () => {
 
     it('should find elements by class', () => {
       assert.equal('section', selection.type)
+    })
+
+    describe('that don\'t exist', () => {
+      const undefinedSelection = querySelector(component, '.notAClass')
+
+      it('should be undefined', () => {
+        assert.equal(undefined, undefinedSelection)
+      })
     })
   })
 

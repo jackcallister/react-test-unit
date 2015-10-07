@@ -11,14 +11,14 @@ function mapChildren(children, originalContext) {
   if (mappedChildren.length === 1) {
     return mappedChildren[0]
   } else {
-    return mappedChildren
+    return mappedChildren.filter(i => i)
   }
 }
 
 function recursivelyShallowRenderTree(tree, originalContext) {
   // tree (or sub-tree) is a null render
   if (!tree) {
-    return null
+    return
   }
 
   if (typeof tree.type === 'function') {

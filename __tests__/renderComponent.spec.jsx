@@ -84,6 +84,7 @@ class NullComponent extends Component {
       <div>
         <h1>Test</h1>
         {null}
+        <div>Test</div>
       </div>
     )
   }
@@ -149,8 +150,8 @@ describe('renderComponent', () => {
       assert.equal('div', component.type)
     })
 
-    it('should have a null child', () => {
-      assert.equal(null, component.props.children[1])
+    it('should have two children', () => {
+      assert.equal(2, component.props.children.length)
     })
   })
 })

@@ -13,10 +13,16 @@ function getSelectorType(selector) {
   }
 }
 
-function querySelectorAllByClass(comp, selector) {
-  let matches = comp.props != null && `.${comp.props.className}` === selector ? [comp] : []
+// Yuck - refactor this!
 
-  if (comp.props && React.Children.count(comp.props.children) > 0) {
+function querySelectorAllByClass(comp, selector) {
+  let matches = []
+
+  if (comp && comp.props && `.${comp.props.className}` === selector) {
+    matches = [...matches, comp]
+  }
+
+  if (comp && comp.props && React.Children.count(comp.props.children) > 0) {
     React.Children.forEach(comp.props.children, (child) => {
       matches = matches.concat(querySelectorAllByClass(child, selector))
     })
@@ -26,9 +32,13 @@ function querySelectorAllByClass(comp, selector) {
 }
 
 function querySelectorAllById(comp, selector) {
-  let matches = comp.props != null && `#${comp.props.id}` === selector ? [comp] : []
+  let matches = []
 
-  if (comp.props && React.Children.count(comp.props.children) > 0) {
+  if (comp && comp.props && `#${comp.props.id}` === selector) {
+    matches = [...matches, comp]
+  }
+
+  if (comp && comp.props && React.Children.count(comp.props.children) > 0) {
     React.Children.forEach(comp.props.children, (child) => {
       matches = matches.concat(querySelectorAllById(child, selector))
     })
@@ -38,9 +48,13 @@ function querySelectorAllById(comp, selector) {
 }
 
 function querySelectorAllByTag(comp, selector) {
-  let matches = comp.type != null && comp.type === selector ? [comp] : []
+  let matches = []
 
-  if (comp.props && React.Children.count(comp.props.children) > 0) {
+  if (comp && comp.props && comp.type === selector) {
+    matches = [...matches, comp]
+  }
+
+  if (comp && comp.props && React.Children.count(comp.props.children) > 0) {
     React.Children.forEach(comp.props.children, (child) => {
       matches = matches.concat(querySelectorAll(child, selector))
     })

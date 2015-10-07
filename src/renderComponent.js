@@ -1,11 +1,11 @@
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
 
-function mapChildren(children) {
+function mapChildren(children, originalContext) {
   let mappedChildren = []
 
-  React.Children.forEach(children, (c) => {
-    mappedChildren.push(mapComponent(c))
+  React.Children.forEach(children, (child) => {
+    mappedChildren.push(recursivelyShallowRenderTree(child, originalContext))
   })
 
   if (mappedChildren.length === 1) {
@@ -15,36 +15,39 @@ function mapChildren(children) {
   }
 }
 
-function mapComponent(comp) {
+function recursivelyShallowRenderTree(tree, originalContext) {
+  if (typeof tree.type === 'function') {
+    const Comp = tree.type
+    const props = tree.props
 
-  if (typeof comp.type === 'function') {
-    return renderComponent(comp)
+    return renderComponent(Comp, props, originalContext)
   }
 
-  if (!comp.props || !comp.props.children || comp.props.children.length === 0) {
-    return comp
+  if (!tree.props || !tree.props.children || tree.props.children.length === 0) {
+    return tree
   }
 
-  // Writable is set to true.
-  // Let's change that...hehe
-  const newComp = {
-    ...comp,
+  // tree is an immutable object
+  const clonedTree = {
+    ...tree,
     props: {
-      ...comp.props
+      ...tree.props
     }
   }
 
-  newComp.props.children = mapChildren(comp.props.children)
+  clonedTree.props.children = mapChildren(clonedTree.props.children, originalContext)
 
-  return newComp
+  return clonedTree
 }
 
-function renderComponentInRenderer(renderer, comp) {
-  renderer.render(comp)
+function renderComponentInRenderer(renderer, Comp, props, context) {
+  renderer.render(<Comp {...props} />, context)
 
-  return mapComponent(renderer.getRenderOutput())
+  const tree = renderer.getRenderOutput()
+
+  return recursivelyShallowRenderTree(tree, context)
 }
 
-export default function renderComponent(comp) {
-  return renderComponentInRenderer(TestUtils.createRenderer(), comp)
+export default function renderComponent(Comp, props, context) {
+  return renderComponentInRenderer(TestUtils.createRenderer(), Comp, props, context)
 }

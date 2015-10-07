@@ -63,7 +63,7 @@ dispatchEvent(button, 'onClick')
 assert.equal(true, spy.called)
 ```
 
-Checkout the example usage [here](https://github.com/jarsbe/react-testing-kit)(deprecated).
+Checkout the example usage [here](https://github.com/jarsbe/react-testing-kit) (deprecated).
 
 Special mention must go to [React Shallow Testutils](https://github.com/sheepsteak/react-shallow-testutils) and [React Unit](https://github.com/pzavolinsky/react-unit) for a lot of inspiration and concepts.
 

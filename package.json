@@ -1,12 +1,17 @@
 {
   "name": "react-test-unit",
-  "version": "0.3.0-rc.3",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Recursive shallow rendering and helpers for efficiently testing React components",
   "main": "lib/react-test-unit.js",
   "scripts": {
     "test": "node_modules/.bin/mocha __tests__ --recursive --compilers jsx?:babel/register",
     "prepublish": "node_modules/.bin/webpack"
   },
+  "keywords": [
+    "react",
+    "testing",
+    "shallow-renderer",
+  ],
   "author": "Jack Callister",
   "license": "ISC",
   "devDependencies": {

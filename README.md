@@ -1,7 +1,5 @@
 # React Test Unit
 
-<strong>Warning</strong> Currently in active development, not quite ready for prime time. There WILL be major break changes.
-
 A set of utilities to make testing stateless components simple, readable and fast.
 
 ## Usage

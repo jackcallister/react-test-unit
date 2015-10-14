@@ -65,7 +65,9 @@ Special mention must go to [React Shallow Testutils](https://github.com/sheepste
 
 ## State
 
-State and refs are not supported with this library. `setState` eventually modifies the DOM (assuming there are VDOM diffs) so you will need to render the component to a DOM and simulate events as advised on in the React docs. Rendering a component with state and/or refs is absolutely fine, just don't subsequently make `setState` calls.
+State and refs are not supported with this library. `setState` eventually modifies the DOM (assuming there are VDOM diffs) so you will need to render the component to a DOM and simulate events. 
+
+Rendering a component with state and/or refs will work, just don't make `setState` calls.
 
 ## API
 

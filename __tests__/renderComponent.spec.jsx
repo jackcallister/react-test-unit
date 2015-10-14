@@ -2,13 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import assert from 'assert'
 import { renderComponent } from '../src/index'
 
-class SingleChildComponent extends Component {
-
-  render() {
-    return <h1>Test</h1>
-  }
-}
-
 class NestedComponent extends Component {
   render() {
     return (
@@ -63,6 +56,23 @@ class InnerContextComponent extends Component {
   }
 }
 
+class StatefulComponent extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      value: 'Test'
+    }
+  }
+
+  render() {
+    return (
+      <h1>{this.state.value}</h1>
+    )
+  }
+}
+
 class MultipleElementChildrenComponent extends Component {
 
   render() {
@@ -93,14 +103,6 @@ class NullComponent extends Component {
 
 describe('renderComponent', () => {
 
-  context('with a SingleChildComponent', () => {
-    const component = renderComponent(SingleChildComponent)
-
-    it('should have the text as the child', () => {
-      assert.equal('Test', component.props.children)
-    })
-  })
-
   context('with a NestedComponent', () => {
     const component = renderComponent(NestedComponent)
 
@@ -118,6 +120,14 @@ describe('renderComponent', () => {
 
     it('should pass context down', () => {
       assert.equal('Test Context', component.props.children[1].props.children)
+    })
+  })
+
+  context('with a StatefulComponent', () => {
+    const component = renderComponent(StatefulComponent)
+
+    it('should render with state', () => {
+      assert.equal('Test', component.props.children)
     })
   })
 

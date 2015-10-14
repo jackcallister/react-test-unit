@@ -63,9 +63,11 @@ dispatchEvent(button, 'onClick')
 assert.equal(true, spy.called)
 ```
 
-Checkout the example usage [here](https://github.com/jarsbe/react-testing-kit) (deprecated).
-
 Special mention must go to [React Shallow Testutils](https://github.com/sheepsteak/react-shallow-testutils) and [React Unit](https://github.com/pzavolinsky/react-unit) for a lot of inspiration and concepts.
+
+## State
+
+State and refs are not supported with this library. `setState` eventually modifies the DOM (assuming there are VDOM diffs) so you will need to render the component to a DOM and simulate events as advised on in the React docs. Rendering a component with state and/or refs is absolutely fine, just don't subsequently make `setState` calls.
 
 ## API
 

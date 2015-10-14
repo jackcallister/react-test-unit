@@ -10,7 +10,7 @@
   "keywords": [
     "react",
     "testing",
-    "shallow-renderer",
+    "shallow-renderer"
   ],
   "author": "Jack Callister",
   "license": "ISC",
